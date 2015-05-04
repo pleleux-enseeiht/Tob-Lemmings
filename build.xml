@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Projet" default="info" basedir=".">
+  <property name="src" location="src"/>
+  <property name="build" location="build"/>
+  <property name="doc" location="doc"/>
+  <property name="dist" location="dist"/>
+  <property name="lib" location="lib"/>
+  <property name="tests" location="tests"/>
+  <property name="etc" location="etc" />
+
+  <path id="classpath.libs">
+    <fileset dir="lib" includes="*.jar"/>
+  </path>
+
+  <target name="info"
+          description="Information">
+    <echo level="info">Cibles disponibles</echo>
+    <echo level="info">  init                Initialisation du projet</echo>
+    <echo level="info">  build               Compilation des sources</echo>
+    <echo level="info">  tests               Exécuter les tests</echo>  
+    <echo level="info">  jar                 Générer la distribution des sources</echo>  
+    <echo level="info">  doc                 Générer la documentation</echo>  
+    <echo level="info">  clean               Nettoyer le projet </echo>  
+  </target>
+
+  <target name="init"
+          description="Initialisation du projet">
+    <tstamp />
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dist}"/>
+    <mkdir dir="${doc}"/>
+    <mkdir dir="${lib}"/>
+  </target>
+
+  <target name="build" depends="init"
+          description="Compilation des sources" >
+    <javac srcdir="${src}" 
+           destdir="${build}" 
+           encoding="UTF-8"
+           includeAntRuntime="false"
+           debug="on" >
+      <classpath>
+        <pathelement location="${build}"/>
+	<path refid="classpath.libs"/>
+      </classpath>
+      <compilerarg value="-Xlint"/>
+    </javac>
+    <javac srcdir="${tests}"
+           destdir="${build}"
+           encoding="UTF-8"
+           includeAntRuntime="false"
+           debug="on" >
+      <classpath>
+        <pathelement location="${build}"/>
+	<path refid="classpath.libs"/>
+      </classpath>
+      <compilerarg value="-Xlint"/>
+    </javac>
+  </target>
+
+  <target name="jar" depends="build"
+          description="Générer la distribution" >
+    <jar destfile="${dist}/sources.jar">
+      <fileset dir="${src}">
+        <include name="build.xml"/>
+	<include name="doc/*"/>
+	<include name="tests/*.java"/>
+	<include name="exemple.lemmings*"/>
+	
+	
+        <!-- <include name="README.txt"/> -->
+        <!-- <include name="etc/*"/> -->
+        <!-- <include name="etc/*.jpg"/> -->
+        <include name="lib/*.jar"/>
+        <!-- <include name="machines/*.xml"/> -->
+        <!-- <include name="mot-image-test/*.xml"/> -->
+        <include name="src/**/*.java"/>
+        <include name="tests/*.java"/>
+      </fileset>
+      <fileset dir="${build}"/>
+      <manifest>
+        <attribute name="Main-Class" value="Lanceur"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <!-- <target name="jar" depends="build" -->
+  <!--         description="Générer la distribution" > -->
+  <!--   <jar destfile="${dist}/sources.jar"> -->
+  <!--     <fileset dir="${build}"/> -->
+  <!--     <manifest> -->
+  <!--       <attribute name="Main-Class" value="Lanceur"/> -->
+  <!--     </manifest> -->
+  <!--   </jar> -->
+  <!-- </target> -->
+  
+  <target name = "vue" depends="build" description = "Executer la vue">
+    <java classname="vue.TestVue" fork="true">
+      <classpath>
+	<pathelement location="${build}"/>
+	<path refid="classpath.libs"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="run" depends="jar"
+          description="Exécuter le programme principal des lemmings">
+    <java jar="${dist}/sources.jar" fork="true">
+      <arg path="./exemple.lemmings"/>
+    </java>
+  </target>
+  
+  <target name="run2" depends="jar"
+          description="Exécuter un test pour les lemmings">
+    <java jar="${dist}/sources.jar" fork="true">
+      <arg path="./exemple.lemmings2"/>
+    </java>
+  </target>
+
+  <target name="run3" depends="jar"
+          description="Exécuter un autre test pour les lemmings">
+    <java jar="${dist}/sources.jar" fork="true">
+      <arg path="./exemple.lemmings3"/>
+    </java>
+  </target>
+
+
+  <target name="tests" depends="build"
+          description="Exécuter les tests">
+    <junit printsummary="true" 
+           haltonfailure="false"
+           fork="true">
+      <classpath>
+        <pathelement location="${build}"/>
+	<path refid="classpath.libs"/>
+      </classpath>
+      <batchtest>
+        <fileset dir="${build}" includes="**/*Test.class"/>
+      </batchtest>
+    </junit>
+  </target>
+
+
+
+  <target name="doc" 
+          description="Générer la documentation">
+    <delete dir="${doc}/api"/>
+    <mkdir dir="${doc}/api"/>
+    <javadoc destdir="${doc}/api" 
+             author="true"
+             encoding="UTF-8"
+             charset="UTF-8"
+             Private="true">
+      <fileset dir="${src}">
+        <include name="**/*.java"/>
+      </fileset>
+    </javadoc>
+  </target>
+
+  <target name="clean"
+          description="Nettoyer le projet" >
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="${doc}/api"/>
+    <delete dir="${dist}/api"/>
+  </target>
+</project>
