@@ -31,4 +31,5 @@ Anyone can create levels as they want to. For examples and more details, look in
 
 ##Architecture
 **MVC** Architecture was followed to develop the game:
+
 ![MVC Cycle](https://github.com/pleleux-enseeiht/Tob-Lemmings/blob/master/graphics/MVC.png "MVC Cycle")
