@@ -65,7 +65,7 @@
         <include name="build.xml"/>
 	<include name="doc/*"/>
 	<include name="tests/*.java"/>
-	<include name="exemple.lemmings*"/>
+	<include name="levels/exemple.lemmings*"/>
 	
 	
         <!-- <include name="README.txt"/> -->
@@ -94,7 +94,7 @@
   <!--   </jar> -->
   <!-- </target> -->
   
-  <target name = "vue" depends="build" description = "Executer la vue">
+  <target name = "view" depends="build" description = "Executer la vue">
     <java classname="vue.TestVue" fork="true">
       <classpath>
 	<pathelement location="${build}"/>
@@ -106,21 +106,21 @@
   <target name="run" depends="jar"
           description="Exécuter le programme principal des lemmings">
     <java jar="${dist}/sources.jar" fork="true">
-      <arg path="./exemple.lemmings"/>
+      <arg path="levels/exemple.lemmings"/>
     </java>
   </target>
   
   <target name="run2" depends="jar"
           description="Exécuter un test pour les lemmings">
     <java jar="${dist}/sources.jar" fork="true">
-      <arg path="./exemple.lemmings2"/>
+      <arg path="levels/exemple.lemmings2"/>
     </java>
   </target>
 
   <target name="run3" depends="jar"
           description="Exécuter un autre test pour les lemmings">
     <java jar="${dist}/sources.jar" fork="true">
-      <arg path="./exemple.lemmings3"/>
+      <arg path="levels/exemple.lemmings3"/>
     </java>
   </target>
 

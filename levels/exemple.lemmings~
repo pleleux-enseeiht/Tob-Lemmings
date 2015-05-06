@@ -1,12 +1,12 @@
-# Description d'un niveau pour le jeu Lemmings
-# Un # commence un commentaire qui se termine avec la fin de la ligne
-# Il n'y a pas d'ordre sur les lignes suivantes.
-# Seul "map" est en fin, juste avant la carte du niveau.
-speed	200	# vitesse du jeu (en millisecondes)
-time	120	# temps maximum (en secondes)
-count	114	# nombre totoal de Lemmings
-rescue	60	# nombre de Lemmings qu'il faut sauver
-climber	10	# nombre d'aptitudes disponibles
+# Description of a level
+# A # begins a one line comment.
+# There is no order in the following parameter line.
+# Only "map" is positioned at the end, right before the level map.
+speed	200	# speed of the game (in millisecond)
+time	120	# maximum time (in seconds)
+count	114	# total number of Lemmings
+rescue	60	# number of Lemmings to save in order to win a game
+climber	10	# number of the competence available
 floater	10	#   "
 blocker	10	#   "
 bomber	10	#   "
@@ -14,9 +14,9 @@ builder	10	#   "
 basher	10	#   "
 digger	10	#   "
 miner	10	#   "
-# sur la carte qui suit map, on a :
-#   * solide indestructible
-#   + solide destructible
+# on the following map, the elements are:
+#   * indestructible solid
+#   + destructible solid
 #   < solide semi-destructible (Lemmings ne peut creuser que de droite vers gauche)
 #   > solide semi-destructible (Lemmings ne peut creuser que de gauche vers droite)
 #   v solide semi-destructible (Lemmings ne peut creuser que creuse vers le bas)

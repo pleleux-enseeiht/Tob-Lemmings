@@ -1,0 +1,53 @@
+# Description of a level
+# A # begins a one line comment.
+# There is no order in the following parameter line.
+# Only "map" is positioned at the end, right before the level map.
+speed	200	# speed of the game (in millisecond)
+time	120	# maximum time (in seconds)
+count	114	# total number of Lemmings
+rescue	60	# number of Lemmings to save in order to win a game
+climber	10	# number of the competence available
+floater	10	#   "
+blocker	10	#   "
+bomber	10	#   "
+builder	10	#   "
+basher	10	#   "
+digger	10	#   "
+miner	10	#   "
+# on the following map, the elements are:
+#   * indestructible block
+#   + destructible block
+#   < semi-destructible block (Lemmings can only dig it from right to left)
+#   > semi-destructible block (Lemmings can only dig it from left to right)
+#   v semi-destructible (Lemmings can only dig from up to bottom)
+#   @ exit
+#   % shredder
+#   ! flame-thrower
+#   O trapdoor
+map
+**********************************************************************
+*                                                                    *
+*         *   +   >   <   v                                          *
+*         *   +   >   <   v                                          *
+*                                                                    *
+*                                                                    *
+*O     ++           *                                                *
+*      ++           *                                                *
+*      ++           *                                                *
++++++++++           *                                !    !           
++++++++++************ ***************%********************************
+*                                                                    *
+*                    +++               +++++++                       *
+*                       ****         ++       +                      *
+*                           ++++++++++++++++++++                     *
+*                                               +                   @*
+*                                                +               ++++*
+*                                                 +++++++++++++++    *
+*                                                                    *
+*                                                                    *
+*                                                                    *
+*                                                                    *
+*                                                                    *
+*         *   +   >   <   v                                          *
+*         *   +   >   <   v                                          *
+******************************         *******************************
